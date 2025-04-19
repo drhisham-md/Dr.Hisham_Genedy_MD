@@ -10,9 +10,15 @@
       font-family: Arial, sans-serif;
       line-height: 1.6;
       color: #333;
+      /* إضافة صورة العيادة كخلفية شفافة */
+      background-image: url("https://scontent.fcai20-2.fna.fbcdn.net/v/t39.30808-6/480644315_1040083861470445_4504165856457656690_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=LkiS28Zxnp0Q7kNvwE6x3tl&_nc_oc=Adm_RVchfYiIOxdQU6Qi70eaV97fhqMi10rqdWVUGNcPFV0Ju6IksKPls6VBeWbF-qE&_nc_zt=23&_nc_ht=scontent.fcai20-2.fna&_nc_gid=BvWqeLLrOu5DC883CKOWQA&oh=00_AfHeupGrWhBzoahldAMKT0MAm4lwNSeaReW2gyVdckn4tQ&oe=68098820");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
     header {
-      background: #2f6e56;
+      background: rgba(47, 110, 86, 0.8); /* شفافية خفيفة للخلفية */
       color: white;
       padding: 20px 0;
       text-align: center;
@@ -47,6 +53,11 @@
     }
     .container {
       padding: 20px;
+      background: rgba(255, 255, 255, 0.9); /* خلفية بيضاء شبه شفافة للمحتوى */
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 1200px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     .profile-image {
       width: 200px;
@@ -56,13 +67,95 @@
       margin: 20px auto;
       display: block;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      animation: profileAnimation 3s ease-in-out infinite;
     }
-    .gallery img {
-      width: 100%;
-      height: 150px;
+    @keyframes profileAnimation {
+      0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1) rotate(10deg);
+        opacity: 0.9;
+      }
+      100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+      }
+    }
+    .about-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
       object-fit: cover;
+      margin: 20px auto;
+      display: block;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      animation: aboutImageAnimation 4s ease-in-out infinite;
+    }
+    @keyframes aboutImageAnimation {
+      0% {
+        transform: rotate(0deg);
+        opacity: 1;
+      }
+      50% {
+        transform: rotate(15deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: rotate(0deg);
+        opacity: 1;
+      }
+    }
+    .booking-form {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ddd;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .booking-form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .booking-form input, .booking-form select, .booking-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .booking-form button {
+      padding: 10px 20px;
+      font-size: 1em;
+      color: white;
+      background: #25D366;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .booking-form button:hover {
+      background: #128C7E;
+    }
+    .Experience-Publications {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .Experience-Publications img {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .Experience-Publications img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     }
     .testimonials {
       display: flex;
@@ -77,12 +170,30 @@
       border: 1px solid #ddd;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
     }
     .testimonial img {
       width: 80px;
       height: 80px;
       border-radius: 50%;
       object-fit: cover;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .testimonial img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+    .testimonial .edit-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #2f6e56;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
     }
     footer {
       background: #333;
@@ -93,6 +204,9 @@
     }
     footer p {
       margin: 0;
+    }
+    footer .social-icons {
+      margin-top: 10px;
     }
     footer .social-icons a {
       color: white;
@@ -106,25 +220,20 @@
     .hidden {
       display: none;
     }
-    .add-testimonial-btn {
-      display: inline-block;
-      margin: 20px 0;
-      padding: 10px 20px;
-      background-color: #333;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .add-testimonial-btn:hover {
-      background-color: #ff6f61;
-    }
+    /* نموذج إضافة رأي جديد */
     .add-testimonial-form {
-      margin-top: 20px;
+      max-width: 500px;
+      margin: 20px auto;
       padding: 20px;
       border: 1px solid #ddd;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: none; /* مخفي افتراضيًا */
+    }
+    .add-testimonial-form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
     }
     .add-testimonial-form input, .add-testimonial-form textarea {
       width: 100%;
@@ -135,127 +244,229 @@
     }
     .add-testimonial-form button {
       padding: 10px 20px;
-      background-color: #25D366;
+      font-size: 1em;
       color: white;
+      background: #25D366;
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      transition: background 0.3s ease;
     }
     .add-testimonial-form button:hover {
-      background-color: #128C7E;
+      background: #128C7E;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="d:\doma\WhatsApp Image 2025-03-28 at 02.12.19_ecc9724b.jpg" alt="Clinic Logo" class="logo">
+    <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\WhatsApp Image 2025-03-28 at 02.12.19_ecc9724b.jpg" alt="Clinic Logo" class="logo">
     <h1>Dr. Hisham Genedy - ENT | Sleep Surgery | Rhinoplasty</h1>
   </header>
   <nav>
     <a href="#" onclick="showPage('home')">Home</a>
     <a href="#" onclick="showPage('about')">About</a>
-    <a href="#" onclick="showPage('gallery')">Gallery</a>
+    <a href="#" onclick="showPage('Experience-Publications')">Experience-Publications</a>
     <a href="#" onclick="showPage('booking')">Booking</a>
-    <a href="#" onclick="showPage('experience-publications')">Experience & Publications</a>
-    <a href="#" onclick="showPage('videos')">Videos</a>
     <a href="#" onclick="showPage('testimonials')">Testimonials</a>
   </nav>
   <div id="home" class="container">
-    <img src="d:\doma\WhatsApp Image 2025-04-06 at 13.20.02_3468f1a5.jpg" alt="Dr. Hisham Genedy Profile" class="profile-image">
+    <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\WhatsApp Image 2025-04-06 at 13.20.02_3468f1a5.jpg" alt="Dr. Hisham Genedy Profile" class="profile-image">
     <h2>Welcome to Dr. Hisham Genedy's Clinic</h2>
-    <p>MD, MsC, MRC-ENT
-      ENT | Sleep Surgery | Rhinoplasty
-      Cairo, Egypt
-      Dammam, Saudi Arabia
-      </p>
+    <p>MD, MsC, MRC-ENT<br>ENT | Sleep Surgery | Rhinoplasty<br>Cairo, Egypt<br>Dammam, Saudi Arabia</p>
+  </div>
+  <div id="about" class="container hidden">
+    <h2>About Dr. Hesham Genedy</h2>
+    <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\WhatsApp Image 2025-04-06 at 13.20.02_3468f1a5.jpg" alt="Dr. Hisham Genedy" class="about-image">
+    <p>Dr. Hesham Genedy is a highly experienced ENT specialist with over 15 years of practice.</p>
+  </div>
+  <div id="Experience-Publications" class="container hidden">
+    <h2>Experience-Publications</h2>
+    <div class="Experience-Publications">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\IMG-20250411-WA0014.jpg" alt="Clinic Image 1">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\IMG-20250411-WA0019.jpg" alt="Clinic Image 2">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\IMG-20250411-WA0020.jpg" alt="Clinic Image 3">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\IMG-20250411-WA0018.jpg" alt="Clinic Image 4">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\IMG-20250411-WA0024.jpg" alt="Clinic Image 5">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\WhatsApp Image 2025-04-11 at 01.28.57_3c3c2221.jpg" alt="Clinic Image 6">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\WhatsApp Image 2025-04-11 at 01.28.57_763a52fa.jpg" alt="Clinic Image 7">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\IMG-20250411-WA0012.jpg" alt="Clinic Image 8">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\IMG-20250411-WA0021.jpg" alt="Clinic Image 9">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\WhatsApp Image 2025-04-16 at 19.48.09_7732c7a2.jpg" alt="Clinic Image 10">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\IMG-20250411-WA0017.jpg" alt="Clinic Image 11">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\IMG-20250411-WA0022.jpg" alt="Clinic Image 12">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\WhatsApp Image 2025-04-11 at 01.43.27_3e7e52a8.jpg" alt="Clinic Image 13">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\WhatsApp Image 2025-04-11 at 01.43.27_3a44a7c1.jpg" alt="Clinic Image 14">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\WhatsApp Image 2025-04-11 at 01.43.27_07ca8696.jpg" alt="Clinic Image 15">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\WhatsApp Image 2025-04-11 at 01.54.16_05ac70f3.jpg" alt="Clinic Image 16">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\WhatsApp Image 2025-04-11 at 01.54.14_62aeece8.jpg" alt="Clinic Image 17">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\WhatsApp Image 2025-04-06 at 13.20.02_3468f1a5.jpg" alt="Clinic Image 18">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\WhatsApp Image 2025-04-06 at 13.20.01_f452ebf7.jpg" alt="Clinic Image 19">
+      <img src="c:\Users\usar\OneDrive\Pictures\Desktop\clinc-website\images\IMG-20250411-WA0023.jpg" alt="Clinic Image 20">
+    </div>
+  </div>
+  <div id="booking" class="container hidden">
+    <h2>Book an Appointment</h2>
+    <form class="booking-form" onsubmit="return false;">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" placeholder="Enter your phone number" required>
+      <label for="country">Country:</label>
+      <select id="country" onchange="toggleGovernorate()">
+        <option value="egypt">Egypt</option>
+        <option value="saudi">Saudi Arabia</option>
+      </select>
+      <div id="egypt-governorates" class="hidden">
+        <label for="governorate-egypt">Governorate:</label>
+        <select id="governorate-egypt">
+          <option value="cairo">Cairo</option>
+          <option value="giza">Giza</option>
+        </select>
+      </div>
+      <div id="saudi-regions" class="hidden">
+        <label for="region-saudi">Region:</label>
+        <select id="region-saudi">
+          <option value="dammam">Dammam</option>
+        </select>
+      </div>
+      <button type="button" onclick="submitForm()">Submit</button>
+    </form>
   </div>
   <div id="testimonials" class="container hidden">
     <h2>Patient Testimonials</h2>
-    <div class="testimonials" id="testimonials-list">
-      <!-- الآراء ستُعرض هنا -->
+    <button onclick="toggleTestimonialForm()" style="margin-bottom: 20px; padding: 10px 20px; background: #2f6e56; color: white; border: none; border-radius: 5px; cursor: pointer;">
+      Add Testimonial
+    </button>
+    <div class="add-testimonial-form" id="testimonialForm">
+      <h3>Add New Testimonial</h3>
+      <label for="patient-name">Patient Name:</label>
+      <input type="text" id="patient-name" placeholder="Enter patient's name" required>
+      <label for="patient-comment">Comment:</label>
+      <textarea id="patient-comment" placeholder="Enter patient's comment" rows="4" required spellcheck="true"></textarea>
+      <label for="patient-image">Upload Image:</label>
+      <input type="file" id="patient-image" accept="image/*" required>
+      <button type="button" onclick="addTestimonial()">Submit</button>
     </div>
-    <a href="#" class="add-testimonial-btn" onclick="toggleAddTestimonialForm()">إضافة رأي جديد</a>
-    <div id="add-testimonial-form" class="add-testimonial-form hidden">
-      <h3>إضافة رأي جديد</h3>
-      <input type="text" id="testimonial-name" placeholder="اسم المريض" required>
-      <textarea id="testimonial-text" placeholder="نص الرأي" rows="4" required></textarea>
-      <input type="url" id="testimonial-image" placeholder="رابط الصورة" required>
-      <button onclick="addTestimonial()">إضافة</button>
-    </div>
+    <div class="testimonials" id="testimonialsList"></div>
   </div>
   <footer>
     <p>&copy; 2023 Dr. Hesham Genedy. All rights reserved.</p>
     <div class="social-icons">
       <a href="https://www.facebook.com/share/1FS547Xjgd/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i> Facebook</a>
       <a href="https://tr.ee/ea1p5YdXzG" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
-      <a href="https://linktr.ee/drhishament?fbclid=IwZXh0bgNhZW0CMTEAAR746SQAetM71Apo8wSB30jHAEBA6JJsgb_EiBiUQhi9hp5Y9RLqh1ifI2J1pA_aem_NELjw1dBpq71ko6ADlWgGA" target="_blank" aria-label="linktr"><i class="fab fa-linktr"></i> fa-linktr</a>
-      <a href="https://www.yourclinicwebsite.com" target="_blank" aria-label="Website"><i class="fas fa-globe"></i> Website</a>
     </div>
   </footer>
   <script>
-    // قائمة تخزن الآراء
-    let testimonials = [
-      {
-        name: "Mark Tarek",
-        text: "Dr. Hisham is amazing! He helped me with my chronic sinus issues.",
-        image: "d:\\doma\\WhatsApp Image 2025-04-13 at 23.35.06_6ec9c7ac.jpg"
-      },
-      {
-        name: "Saudi Patient",
-        text: "Thank you, Dr. Hisham, for the excellent service!",
-        image: "d:\\doma\\WhatsApp Image 2025-04-13 at 23.35.06_38bb8917.jpg"
+    // تحميل الآراء المخزنة عند بدء تشغيل الصفحة
+    window.onload = () => {
+      showPage('home');
+      loadTestimonials();
+    };
+
+    function loadTestimonials() {
+      const testimonialsList = document.getElementById('testimonialsList');
+      const savedTestimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
+      testimonialsList.innerHTML = ''; // مسح القائمة الحالية
+      savedTestimonials.forEach((testimonial, index) => {
+        const newTestimonial = document.createElement('div');
+        newTestimonial.classList.add('testimonial');
+        newTestimonial.innerHTML = `
+          <img src="${testimonial.image}" alt="${testimonial.name}">
+          <div>
+            <h3>${testimonial.name}</h3>
+            <p>"${testimonial.comment}"</p>
+          </div>
+          <button class="edit-btn" onclick="editTestimonial(${index})">Edit</button>
+        `;
+        testimonialsList.appendChild(newTestimonial);
+      });
+    }
+
+    function toggleTestimonialForm() {
+      const form = document.getElementById('testimonialForm');
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function addTestimonial() {
+      const name = document.getElementById('patient-name').value;
+      const comment = document.getElementById('patient-comment').value;
+      const imageInput = document.getElementById('patient-image');
+      const imageFile = imageInput.files[0];
+      if (!name || !comment || !imageFile) {
+        alert('Please fill all fields and upload an image.');
+        return;
       }
-    ];
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const imageUrl = e.target.result;
+        // حفظ الرأي الجديد في localStorage
+        const savedTestimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
+        savedTestimonials.push({ name, comment, image: imageUrl });
+        localStorage.setItem('testimonials', JSON.stringify(savedTestimonials));
+        // إعادة تحميل الآراء
+        loadTestimonials();
+        // مسح الحقول بعد الإضافة
+        document.getElementById('patient-name').value = '';
+        document.getElementById('patient-comment').value = '';
+        imageInput.value = '';
+        toggleTestimonialForm();
+      };
+      reader.readAsDataURL(imageFile);
+    }
+
+    function editTestimonial(index) {
+      const savedTestimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
+      const testimonial = savedTestimonials[index];
+      const newName = prompt('Edit Patient Name:', testimonial.name);
+      const newComment = prompt('Edit Comment:', testimonial.comment);
+      if (newName && newComment) {
+        savedTestimonials[index] = { ...testimonial, name: newName, comment: newComment };
+        localStorage.setItem('testimonials', JSON.stringify(savedTestimonials));
+        loadTestimonials(); // تحديث القائمة
+      }
+    }
 
     function showPage(pageId) {
       const pages = document.querySelectorAll('.container');
       pages.forEach(page => page.classList.add('hidden'));
       document.getElementById(pageId).classList.remove('hidden');
-      if (pageId === 'testimonials') {
-        renderTestimonials();
+    }
+
+    function toggleGovernorate() {
+      const country = document.getElementById('country').value;
+      const egyptDiv = document.getElementById('egypt-governorates');
+      const saudiDiv = document.getElementById('saudi-regions');
+      if (country === 'egypt') {
+        egyptDiv.classList.remove('hidden');
+        saudiDiv.classList.add('hidden');
+      } else if (country === 'saudi') {
+        saudiDiv.classList.remove('hidden');
+        egyptDiv.classList.add('hidden');
       }
     }
 
-    function toggleAddTestimonialForm() {
-      const form = document.getElementById('add-testimonial-form');
-      form.classList.toggle('hidden');
-    }
-
-    function addTestimonial() {
-      const name = document.getElementById('testimonial-name').value;
-      const text = document.getElementById('testimonial-text').value;
-      const image = document.getElementById('testimonial-image').value;
-
-      if (name && text && image) {
-        testimonials.push({ name, text, image });
-        renderTestimonials();
-        document.getElementById('testimonial-name').value = '';
-        document.getElementById('testimonial-text').value = '';
-        document.getElementById('testimonial-image').value = '';
-        toggleAddTestimonialForm();
-      } else {
-        alert('يرجى ملء جميع الحقول!');
+    function submitForm() {
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const country = document.getElementById('country').value;
+      const governorateEgypt = document.getElementById('governorate-egypt').value;
+      const regionSaudi = document.getElementById('region-saudi').value;
+      let message = `Name: ${name}
+Phone: ${phone}
+Country: ${country}
+`;
+      if (country === 'egypt') {
+        message += `Governorate: ${governorateEgypt}
+`;
+      } else if (country === 'saudi') {
+        message += `Region: ${regionSaudi}
+`;
       }
+      message += `Consultation Type: ${consultationType}`;
+      const whatsappNumber = "+201146141421";
+      const encodedMessage = encodeURIComponent(message);
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
     }
-
-    function renderTestimonials() {
-      const testimonialsList = document.getElementById('testimonials-list');
-      testimonialsList.innerHTML = '';
-      testimonials.forEach(testimonial => {
-        const testimonialDiv = document.createElement('div');
-        testimonialDiv.className = 'testimonial';
-        testimonialDiv.innerHTML = `
-          <img src="${testimonial.image}" alt="${testimonial.name}">
-          <div>
-            <h3>${testimonial.name}</h3>
-            <p>"${testimonial.text}"</p>
-          </div>
-        `;
-        testimonialsList.appendChild(testimonialDiv);
-      });
-    }
-
-    window.onload = () => showPage('home');
   </script>
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
