@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Hisham Genedy - ENT | Sleep Surgery | Rhinoplasty</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    header {
+      background: #2f6e56;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      position: relative;
+    }
+    header img.logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 15px;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    nav {
+      background: #333;
+      color: white;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-size: 1.1em;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      padding: 20px;
+    }
+    .profile-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 20px auto;
+      display: block;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .gallery img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .testimonials {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .testimonial {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .testimonial img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .social-icons a {
+      color: white;
+      font-size: 1.5em;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    footer .social-icons a:hover {
+      color: #25D366;
+    }
+    .hidden {
+      display: none;
+    }
+    .add-testimonial-btn {
+      display: inline-block;
+      margin: 20px 0;
+      padding: 10px 20px;
+      background-color: #333;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .add-testimonial-btn:hover {
+      background-color: #ff6f61;
+    }
+    .add-testimonial-form {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .add-testimonial-form input, .add-testimonial-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .add-testimonial-form button {
+      padding: 10px 20px;
+      background-color: #25D366;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .add-testimonial-form button:hover {
+      background-color: #128C7E;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="d:\doma\WhatsApp Image 2025-03-28 at 02.12.19_ecc9724b.jpg" alt="Clinic Logo" class="logo">
+    <h1>Dr. Hisham Genedy - ENT | Sleep Surgery | Rhinoplasty</h1>
+  </header>
+  <nav>
+    <a href="#" onclick="showPage('home')">Home</a>
+    <a href="#" onclick="showPage('about')">About</a>
+    <a href="#" onclick="showPage('gallery')">Gallery</a>
+    <a href="#" onclick="showPage('booking')">Booking</a>
+    <a href="#" onclick="showPage('experience-publications')">Experience & Publications</a>
+    <a href="#" onclick="showPage('videos')">Videos</a>
+    <a href="#" onclick="showPage('testimonials')">Testimonials</a>
+  </nav>
+  <div id="home" class="container">
+    <img src="d:\doma\WhatsApp Image 2025-04-06 at 13.20.02_3468f1a5.jpg" alt="Dr. Hisham Genedy Profile" class="profile-image">
+    <h2>Welcome to Dr. Hisham Genedy's Clinic</h2>
+    <p>MD, MsC, MRC-ENT
+      ENT | Sleep Surgery | Rhinoplasty
+      Cairo, Egypt
+      Dammam, Saudi Arabia
+      </p>
+  </div>
+  <div id="testimonials" class="container hidden">
+    <h2>Patient Testimonials</h2>
+    <div class="testimonials" id="testimonials-list">
+      <!-- الآراء ستُعرض هنا -->
+    </div>
+    <a href="#" class="add-testimonial-btn" onclick="toggleAddTestimonialForm()">إضافة رأي جديد</a>
+    <div id="add-testimonial-form" class="add-testimonial-form hidden">
+      <h3>إضافة رأي جديد</h3>
+      <input type="text" id="testimonial-name" placeholder="اسم المريض" required>
+      <textarea id="testimonial-text" placeholder="نص الرأي" rows="4" required></textarea>
+      <input type="url" id="testimonial-image" placeholder="رابط الصورة" required>
+      <button onclick="addTestimonial()">إضافة</button>
+    </div>
+  </div>
+  <footer>
+    <p>&copy; 2023 Dr. Hesham Genedy. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/share/1FS547Xjgd/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i> Facebook</a>
+      <a href="https://tr.ee/ea1p5YdXzG" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://linktr.ee/drhishament?fbclid=IwZXh0bgNhZW0CMTEAAR746SQAetM71Apo8wSB30jHAEBA6JJsgb_EiBiUQhi9hp5Y9RLqh1ifI2J1pA_aem_NELjw1dBpq71ko6ADlWgGA" target="_blank" aria-label="linktr"><i class="fab fa-linktr"></i> fa-linktr</a>
+      <a href="https://www.yourclinicwebsite.com" target="_blank" aria-label="Website"><i class="fas fa-globe"></i> Website</a>
+    </div>
+  </footer>
+  <script>
+    // قائمة تخزن الآراء
+    let testimonials = [
+      {
+        name: "Mark Tarek",
+        text: "Dr. Hisham is amazing! He helped me with my chronic sinus issues.",
+        image: "d:\\doma\\WhatsApp Image 2025-04-13 at 23.35.06_6ec9c7ac.jpg"
+      },
+      {
+        name: "Saudi Patient",
+        text: "Thank you, Dr. Hisham, for the excellent service!",
+        image: "d:\\doma\\WhatsApp Image 2025-04-13 at 23.35.06_38bb8917.jpg"
+      }
+    ];
+
+    function showPage(pageId) {
+      const pages = document.querySelectorAll('.container');
+      pages.forEach(page => page.classList.add('hidden'));
+      document.getElementById(pageId).classList.remove('hidden');
+      if (pageId === 'testimonials') {
+        renderTestimonials();
+      }
+    }
+
+    function toggleAddTestimonialForm() {
+      const form = document.getElementById('add-testimonial-form');
+      form.classList.toggle('hidden');
+    }
+
+    function addTestimonial() {
+      const name = document.getElementById('testimonial-name').value;
+      const text = document.getElementById('testimonial-text').value;
+      const image = document.getElementById('testimonial-image').value;
+
+      if (name && text && image) {
+        testimonials.push({ name, text, image });
+        renderTestimonials();
+        document.getElementById('testimonial-name').value = '';
+        document.getElementById('testimonial-text').value = '';
+        document.getElementById('testimonial-image').value = '';
+        toggleAddTestimonialForm();
+      } else {
+        alert('يرجى ملء جميع الحقول!');
+      }
+    }
+
+    function renderTestimonials() {
+      const testimonialsList = document.getElementById('testimonials-list');
+      testimonialsList.innerHTML = '';
+      testimonials.forEach(testimonial => {
+        const testimonialDiv = document.createElement('div');
+        testimonialDiv.className = 'testimonial';
+        testimonialDiv.innerHTML = `
+          <img src="${testimonial.image}" alt="${testimonial.name}">
+          <div>
+            <h3>${testimonial.name}</h3>
+            <p>"${testimonial.text}"</p>
+          </div>
+        `;
+        testimonialsList.appendChild(testimonialDiv);
+      });
+    }
+
+    window.onload = () => showPage('home');
+  </script>
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
