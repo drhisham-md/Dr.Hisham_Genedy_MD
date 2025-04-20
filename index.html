@@ -184,7 +184,7 @@
       transform: scale(1.1);
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     }
-    .testimonial .edit-btn {
+    .testimonial .edit-btn, .testimonial .delete-btn {
       position: absolute;
       top: 10px;
       right: 10px;
@@ -194,6 +194,10 @@
       padding: 5px 10px;
       border-radius: 5px;
       cursor: pointer;
+      display: none; /* مخفي افتراضيًا */
+    }
+    .testimonial .delete-btn {
+      background: #ff4d4d;
     }
     footer {
       background: #333;
@@ -256,10 +260,10 @@
     <button onclick="toggleMusic()"><i class="fas fa-play" id="play-pause-icon"></i></button>
     <input type="range" id="volume-control" min="0" max="1" step="0.01" value="1" oninput="adjustVolume()">
   </div>
-
   <header>
     <img src="https://i.postimg.cc/k4Vjx4jJ/Whats-App-Image-2025-03-28-at-02-12-19-ecc9724b.jpg" alt="Clinic Logo" class="logo">
-    <h1>Dr. Hisham Genedy - ENT | Sleep Surgery | Rhinoplasty</h1>
+    <h1>Hisham Genedy </h1><br>
+    <h>ENT | Sleep Surgery | Rhinoplasty</h>
   </header>
   <nav>
     <a href="#" onclick="showPage('home')">Home</a>
@@ -271,7 +275,7 @@
   <div id="home" class="container">
     <img src="https://i.postimg.cc/gJ6Dx7Jr/Whats-App-Image-2025-04-06-at-13-20-02-3468f1a5.jpg" alt="Dr. Hisham Genedy Profile" class="profile-image">
     <h2>Welcome to Dr. Hisham Genedy's Clinic</h2>
-    <p>MD, MsC, MRC-ENT<br>ENT | Sleep Surgery | Rhinoplasty<br>Cairo, Egypt<br>Dammam, Saudi Arabia</p>
+    <p>MD, MsC, MRC-ENT<br>ENT | Sleep Surgery | Rhinoplasty</p>
   </div>
   <div id="about" class="container hidden">
     <h2>About Dr. Hesham Genedy</h2>
@@ -301,6 +305,10 @@
       <img src="https://i.postimg.cc/bYkg84WB/Whats-App-Image-2025-04-11-at-01-43-27-3a44a7c1.jpg" alt="Clinic Image 18">
       <img src="https://i.postimg.cc/QCQJbWc3/Whats-App-Image-2025-04-11-at-01-43-27-3e7e52a8.jpg" alt="Clinic Image 19">
       <img src="https://i.postimg.cc/527qnJQ6/Whats-App-Image-2025-04-11-at-01-54-14-81162fc9.jpg" alt="Clinic Image 20">
+      <img src="https://i.postimg.cc/fyfYXQhW/Whats-App-Image-2025-04-11-at-01-54-16-993dd845.jpg" alt="Clinic Image 21">
+      <img src="https://i.postimg.cc/zvrnVX6P/Whats-App-Image-2025-04-11-at-01-54-16-05ac70f3.jpg" alt="Clinic Image 22">
+      <img src="https://i.postimg.cc/fybQC3KF/Whats-App-Image-2025-04-11-at-01-54-18-a147df39.jpg" alt="Clinic Image 23">
+      <img src="https://i.postimg.cc/SsDwnShG/Whats-App-Image-2025-04-11-at-01-54-17-a0de7e1f.jpg" alt="Clinic Image 24">
     </div>
   </div>
   <div id="booking" class="container hidden">
@@ -363,20 +371,24 @@
       <textarea id="patient-comment" placeholder="Enter patient's comment" rows="4" required spellcheck="true"></textarea>
       <label for="patient-image">Upload Image (Optional):</label>
       <input type="file" id="patient-image" accept="image/*">
-      <button type="button" onclick="addTestimonial()">Submit</button>
+      <button type="button" onclick="addOrUpdateTestimonial()">Submit</button>
     </div>
     <div class="testimonials" id="testimonialsList"></div>
   </div>
   <footer>
     <p>&copy; 2023 Dr. Hesham Genedy. All rights reserved.</p>
     <div class="social-icons">
-      <a href="https://www.facebook.com/share/1FS547Xjgd/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i> Facebook</a>
-      <a href="https://tr.ee/ea1p5YdXzG" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://www.facebook.com/DrHishamENT" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i> Facebook</a>
+      <a href="https://www.instagram.com/drhishament/?igsh=bXpjZWV2MWRhZGhp&utm_source=qr#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://www.youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i> YouTube</a>
+      <a href="https://www.tiktok.com/@drhishament" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i> TikTok</a>
+      <a href="https://www.snapchat.com/add/drhishament" target="_blank" aria-label="Snapchat"><i class="fab fa-snapchat"></i> Snapchat</a>
     </div>
   </footer>
   <script>
     // متغير للتحقق من حالة تسجيل الدخول كمسؤول
     let isAdminLoggedIn = false;
+    let currentEditingIndex = null; // لمعرفة إذا كان هناك رأي قيد التعديل
 
     // تحميل الآراء المخزنة عند بدء تشغيل الصفحة
     window.onload = () => {
@@ -424,6 +436,7 @@
             <h3>${testimonial.name}</h3>
             <p>"${testimonial.comment}"</p>
           </div>
+          <button class="edit-btn" onclick="editTestimonial(${index})" style="display: ${isAdminLoggedIn ? 'block' : 'none'};">Edit</button>
           <button class="delete-btn" onclick="deleteTestimonial(${index})" style="display: ${isAdminLoggedIn ? 'block' : 'none'};">Delete</button>
         `;
         testimonialsList.appendChild(newTestimonial);
@@ -435,52 +448,41 @@
       form.style.display = form.style.display === 'none' ? 'block' : 'none';
     }
 
-    function addTestimonial() {
+    function addOrUpdateTestimonial() {
       const name = document.getElementById('patient-name').value;
       const comment = document.getElementById('patient-comment').value;
       const imageInput = document.getElementById('patient-image');
       const imageFile = imageInput.files[0];
-
       if (!name || !comment) {
         alert('Please fill in the name and comment fields.');
         return;
       }
-
       let imageUrl = '';
       if (imageFile) {
         const reader = new FileReader();
         reader.onload = function (e) {
           imageUrl = e.target.result;
-
-          // حفظ الرأي الجديد في localStorage
-          const savedTestimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
-          savedTestimonials.push({ name, comment, image: imageUrl });
-          localStorage.setItem('testimonials', JSON.stringify(savedTestimonials));
-
-          // إعادة تحميل الآراء
-          loadTestimonials();
-
-          // مسح الحقول بعد الإضافة
-          document.getElementById('patient-name').value = '';
-          document.getElementById('patient-comment').value = '';
-          imageInput.value = '';
-          toggleTestimonialForm();
+          saveOrUpdateTestimonial(name, comment, imageUrl);
         };
         reader.readAsDataURL(imageFile);
       } else {
-        // إذا لم يتم تحميل صورة، استخدم صورة افتراضية
-        const savedTestimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
-        savedTestimonials.push({ name, comment, image: 'https://via.placeholder.com/80' });
-        localStorage.setItem('testimonials', JSON.stringify(savedTestimonials));
-
-        // إعادة تحميل الآراء
-        loadTestimonials();
-
-        // مسح الحقول بعد الإضافة
-        document.getElementById('patient-name').value = '';
-        document.getElementById('patient-comment').value = '';
-        toggleTestimonialForm();
+        saveOrUpdateTestimonial(name, comment, 'https://via.placeholder.com/80');
       }
+    }
+
+    function saveOrUpdateTestimonial(name, comment, image) {
+      const savedTestimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
+      if (currentEditingIndex !== null) {
+        // تحديث الرأي الحالي
+        savedTestimonials[currentEditingIndex] = { name, comment, image };
+        currentEditingIndex = null;
+      } else {
+        // إضافة رأي جديد
+        savedTestimonials.push({ name, comment, image });
+      }
+      localStorage.setItem('testimonials', JSON.stringify(savedTestimonials));
+      loadTestimonials();
+      clearTestimonialForm();
     }
 
     function deleteTestimonial(index) {
@@ -492,6 +494,22 @@
       }
     }
 
+    function editTestimonial(index) {
+      const savedTestimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
+      const testimonial = savedTestimonials[index];
+      document.getElementById('patient-name').value = testimonial.name;
+      document.getElementById('patient-comment').value = testimonial.comment;
+      currentEditingIndex = index;
+      toggleTestimonialForm();
+    }
+
+    function clearTestimonialForm() {
+      document.getElementById('patient-name').value = '';
+      document.getElementById('patient-comment').value = '';
+      document.getElementById('patient-image').value = '';
+      currentEditingIndex = null;
+    }
+
     function toggleAdminLogin() {
       const adminLogin = document.getElementById('admin-login');
       adminLogin.classList.toggle('hidden');
@@ -499,11 +517,11 @@
 
     function loginAsAdmin() {
       const password = document.getElementById('admin-password').value;
-      const correctPassword = "admin123"; // كلمة المرور السرية للمسؤول
+      const correctPassword = "Hisham@2025"; // كلمة المرور السرية للمسؤول
       if (password === correctPassword) {
         isAdminLoggedIn = true;
         alert('Admin login successful!');
-        loadTestimonials(); // إعادة تحميل الآراء لإظهار أزرار الحذف
+        loadTestimonials(); // إعادة تحميل الآراء لإظهار أزرار التعديل والحذف
       } else {
         alert('Incorrect password. Please try again.');
       }
@@ -535,22 +553,25 @@
       const governorateEgypt = document.getElementById('governorate-egypt').value;
       const regionSaudi = document.getElementById('region-saudi').value;
       const consultationType = document.getElementById('consultation-type').value;
-
       let whatsappNumber = "";
       if (country === 'egypt') {
         whatsappNumber = "201146141421";
       } else if (country === 'saudi') {
         whatsappNumber = "966560533284";
       }
-
-      let message = `Name: ${name}\nPhone: ${phone}\nCountry: ${country}\n`;
+      let message = `Name: ${name}
+Phone: ${phone}
+Country: ${country}
+`;
       if (country === 'egypt') {
-        message += `Governorate: ${governorateEgypt}\n`;
+        message += `Governorate: ${governorateEgypt}
+`;
       } else if (country === 'saudi') {
-        message += `Region: ${regionSaudi}\n`;
+        message += `Region: ${regionSaudi}
+`;
       }
-      message += `Consultation Type: ${consultationType === 'online' ? 'Online' : 'In Clinic'}\n`;
-
+      message += `Consultation Type: ${consultationType === 'online' ? 'Online' : 'In Clinic'}
+`;
       const encodedMessage = encodeURIComponent(message);
       window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
     }
